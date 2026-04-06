@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>White Glove AI Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .entry-title,.page-title,h1.page-title,.page-header{display:none !important;}
+    #vc-wg{position:relative;width:100vw;left:50%;margin-left:-50vw;overflow-x:hidden;}
+    #vc-wg,#vc-wg *,#vc-wg *::before,#vc-wg *::after{box-sizing:border-box !important;}
+    body{margin:0;background:#070707;}
+    #vc-wg{font-family:'Manrope',sans-serif !important;background:#070707 !important;color:#fff !important;line-height:1.6 !important;}
+    #vc-wg h1,#vc-wg h2,#vc-wg h3,#vc-wg h4,#vc-wg h1 *,#vc-wg h2 *,#vc-wg h3 *,#vc-wg h4 *{color:#fff !important;font-family:'Manrope',sans-serif !important;margin:0 !important;padding:0 !important;}
+    #vc-wg p{color:rgba(255,255,255,0.68) !important;font-family:'Manrope',sans-serif !important;margin:0 !important;}
+    #vc-wg ul,#vc-wg li{margin:0 !important;padding:0 !important;}
+    #vc-wg a{text-decoration:none !important;}
+    #vc-wg img{max-width:100% !important;display:block !important;}
+    #vc-wg .cyan{color:#19F3E1 !important;}
+
+    #vc-wg .es{display:none !important;}
+    #vc-wg.show-es .es{display:revert !important;}
+    #vc-wg.show-es .en{display:none !important;}
+
+    #vc-wg .lang-bar{background:#0a0a0a;padding:10px 40px;display:flex !important;justify-content:flex-end;border-bottom:1px solid rgba(25,243,225,.12);}
+    #vc-wg .lbtn{background:transparent;border:1px solid rgba(25,243,225,.4);color:rgba(255,255,255,.55) !important;padding:5px 18px;border-radius:44px;cursor:pointer;font-family:'Manrope',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;transition:all .25s;margin-left:8px;}
+    #vc-wg .lbtn.on,#vc-wg .lbtn:hover{background:#19F3E1 !important;border-color:#19F3E1 !important;color:#000 !important;}
+
+    #vc-wg .hero{min-height:88vh;display:flex !important;align-items:center;justify-content:center;text-align:center;padding:5em 2em;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% -5%,#189E93 0%,#000 65%) !important;}
+    #vc-wg .hero-bg{position:absolute;inset:0;background:url('https://viralconnections.net/wp-content/uploads/2025/09/Viral-Connections-Banner-1-1-scaled.png') center/cover no-repeat;opacity:.12;pointer-events:none;}
+    #vc-wg .hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(25,243,225,.1) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+    #vc-wg .hero-inner{position:relative;z-index:2;max-width:860px;}
+    #vc-wg .badge{display:inline-block !important;background:rgba(25,243,225,.08);border:1px solid rgba(25,243,225,.4);color:#19F3E1 !important;padding:7px 22px;border-radius:44px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px;}
+    #vc-wg .hero h1{font-size:clamp(34px,5vw,62px) !important;font-weight:800 !important;line-height:1.12 !important;color:#fff !important;margin-bottom:20px !important;}
+    #vc-wg .hero p{font-size:clamp(16px,1.8vw,19px) !important;color:rgba(255,255,255,.75) !important;max-width:640px;margin:0 auto 40px !important;}
+    #vc-wg .btn{display:inline-block !important;background:#19F3E1 !important;color:#000 !important;padding:15px 40px;border-radius:44px;font-family:'Manrope',sans-serif;font-size:16px;font-weight:700;text-decoration:none !important;transition:all .3s;border:none;cursor:pointer;}
+    #vc-wg .btn:hover{background:#60CAC2 !important;transform:translateY(-2px);box-shadow:0 10px 30px rgba(25,243,225,.28);}
+
+    #vc-wg .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+    #vc-wg .sec{padding:60px 0;}
+    #vc-wg .sec-dark{background:#0d0d0d !important;}
+    #vc-wg .tag{display:block !important;color:#19F3E1 !important;font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:12px;}
+    #vc-wg .sec-title{font-size:clamp(24px,3.2vw,44px) !important;font-weight:800 !important;line-height:1.18 !important;color:#fff !important;margin-bottom:14px !important;}
+    #vc-wg .sec-sub{font-size:17px !important;color:rgba(255,255,255,.65) !important;margin-bottom:44px !important;}
+    #vc-wg .center{text-align:center;}
+    #vc-wg .center .sec-sub{max-width:560px;margin-left:auto !important;margin-right:auto !important;}
+
+    #vc-wg .intro-grid{display:grid !important;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+    #vc-wg .intro-img{position:relative;border-radius:20px;overflow:hidden;}
+    #vc-wg .intro-img img{width:100% !important;height:400px;object-fit:cover;border-radius:20px;}
+    #vc-wg .intro-img::after{content:'';position:absolute;inset:0;border-radius:20px;border:1px solid rgba(25,243,225,.18);pointer-events:none;}
+    #vc-wg .cklist{list-style:none !important;margin-top:24px !important;}
+    #vc-wg .cklist li{padding:10px 0 10px 28px !important;position:relative;color:rgba(255,255,255,.78) !important;font-size:15px;border-bottom:1px solid rgba(255,255,255,.05);}
+    #vc-wg .cklist li:last-child{border-bottom:none !important;}
+    #vc-wg .cklist li::before{content:'✓';position:absolute;left:0;color:#19F3E1 !important;font-weight:800;}
+
+    #vc-wg .svc-grid{display:grid !important;grid-template-columns:repeat(3,1fr);gap:22px;}
+    #vc-wg .svc-card{background:#111 !important;border:1px solid rgba(25,243,225,.09);border-radius:18px;overflow:hidden;transition:all .3s;display:flex !important;flex-direction:column;}
+    #vc-wg .svc-card:hover{border-color:rgba(25,243,225,.38) !important;transform:translateY(-4px);box-shadow:0 16px 40px rgba(25,243,225,.09);}
+    #vc-wg .svc-card img{width:100% !important;height:175px;object-fit:cover;}
+    #vc-wg .svc-body{padding:22px;flex:1;display:flex !important;flex-direction:column;}
+    #vc-wg .svc-icon{width:40px;height:40px;background:rgba(25,243,225,.1);border-radius:10px;display:flex !important;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px;}
+    #vc-wg .svc-card h3{font-size:17px !important;font-weight:700 !important;color:#fff !important;margin-bottom:8px !important;line-height:1.3 !important;}
+    #vc-wg .svc-card p{font-size:13px !important;color:rgba(255,255,255,.55) !important;line-height:1.6;flex:1;}
+    #vc-wg .svc-link{display:inline-block !important;margin-top:16px !important;color:#19F3E1 !important;font-size:13px;font-weight:700;transition:opacity .2s;}
+    #vc-wg .svc-link:hover{opacity:.7;}
+
+    #vc-wg .stats-grid{display:grid !important;grid-template-columns:repeat(4,1fr);gap:18px;}
+    #vc-wg .stat{background:linear-gradient(175deg,#111 0%,rgba(25,243,225,.06) 100%) !important;border:1px solid rgba(25,243,225,.16);border-radius:18px;padding:32px 20px;text-align:center;}
+    #vc-wg .stat h3{font-size:44px !important;font-weight:800 !important;color:#19F3E1 !important;line-height:1;margin-bottom:8px !important;}
+    #vc-wg .stat p{font-size:14px !important;color:rgba(255,255,255,.6) !important;font-weight:500;}
+
+    #vc-wg .steps{display:grid !important;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;}
+    #vc-wg .steps::before{content:'';position:absolute;top:40px;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(25,243,225,.4),transparent);}
+    #vc-wg .step{background:#111 !important;border:1px solid rgba(25,243,225,.09);border-radius:18px;padding:40px 24px 32px;text-align:center;transition:border-color .3s;}
+    #vc-wg .step:hover{border-color:rgba(25,243,225,.28) !important;}
+    #vc-wg .step-num{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#189E93,#19F3E1) !important;color:#000 !important;font-weight:800;font-size:20px;display:flex !important;align-items:center;justify-content:center;margin:0 auto 18px !important;box-shadow:0 0 20px rgba(25,243,225,.3);}
+    #vc-wg .step h3{font-size:17px !important;font-weight:700 !important;color:#fff !important;margin-bottom:10px !important;}
+    #vc-wg .step p{font-size:14px !important;color:rgba(255,255,255,.55) !important;line-height:1.6;}
+
+    #vc-wg .feat-grid{display:grid !important;grid-template-columns:repeat(2,1fr);gap:18px;}
+    #vc-wg .feat{background:#111 !important;border:1px solid rgba(25,243,225,.08);border-radius:16px;padding:24px;display:flex !important;gap:18px;align-items:flex-start;transition:border-color .3s;}
+    #vc-wg .feat:hover{border-color:rgba(25,243,225,.26) !important;}
+    #vc-wg .feat-icon{width:46px;height:46px;min-width:46px;background:rgba(25,243,225,.1);border-radius:12px;display:flex !important;align-items:center;justify-content:center;font-size:20px;}
+    #vc-wg .feat h4{font-size:16px !important;font-weight:700 !important;color:#fff !important;margin-bottom:6px !important;}
+    #vc-wg .feat p{font-size:13px !important;color:rgba(255,255,255,.55) !important;line-height:1.6;}
+
+    #vc-wg .cta-sec{background:radial-gradient(ellipse at 50% 110%,#189E93 0%,#000 60%) !important;padding:72px 40px;text-align:center;position:relative;overflow:hidden;}
+    #vc-wg .cta-sec::before{content:'';position:absolute;inset:0;background:url('https://viralconnections.net/wp-content/uploads/2025/08/BG-Footer-1-1.png') center/cover no-repeat;opacity:.06;pointer-events:none;}
+    #vc-wg .cta-inner{position:relative;z-index:2;max-width:860px;margin:0 auto;}
+    #vc-wg .cta-inner p{font-size:17px !important;max-width:520px;margin:0 auto 40px !important;}
+    #vc-wg .cal-wrap{border-radius:18px;overflow:hidden;border:1px solid rgba(25,243,225,.18);box-shadow:0 0 50px rgba(25,243,225,.08);margin-top:40px;}
+
+    @media(max-width:1024px){
+      #vc-wg .svc-grid{grid-template-columns:repeat(2,1fr) !important;}
+      #vc-wg .stats-grid{grid-template-columns:repeat(2,1fr) !important;}
+      #vc-wg .steps{grid-template-columns:1fr !important;}
+      #vc-wg .steps::before{display:none !important;}
+      #vc-wg .intro-grid{grid-template-columns:1fr !important;gap:36px !important;}
+    }
+
+    @media(max-width:768px){
+      #vc-wg .wrap{padding:0 20px !important;}
+      #vc-wg .sec{padding:48px 0 !important;}
+      #vc-wg .cta-sec{padding:52px 20px !important;}
+      #vc-wg .feat-grid{grid-template-columns:1fr !important;}
+      #vc-wg .svc-grid{grid-template-columns:1fr !important;}
+      #vc-wg .lang-bar{padding:10px 20px !important;}
+      #vc-wg .hero{min-height:70vh;padding:4em 1.5em !important;}
+    }
+
+    @media(max-width:480px){
+      #vc-wg .stats-grid{grid-template-columns:1fr 1fr !important;}
+    }
+  </style>
+</head>
+<body>
+  <div id="vc-wg">
+    <div class="lang-bar">
+      <button class="lbtn on" onclick="vcLang('en',this)">EN</button>
+      <button class="lbtn" onclick="vcLang('es',this)">ES</button>
+    </div>
+
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-inner">
+        <div class="badge en">White Glove AI Solutions</div>
+        <div class="badge es">Soluciones IA de Guante Blanco</div>
+        <h1 class="en">Premium AI Services,<br><span class="cyan">Done Completely For You</span></h1>
+        <h1 class="es">Servicios IA Premium,<br><span class="cyan">Hechos Completamente Para Ti</span></h1>
+        <p class="en">Most businesses know AI can transform their operations but do not have the time or team. We handle everything, from strategy to execution.</p>
+        <p class="es">La mayoría sabe que la IA puede transformar su negocio, pero no tiene el tiempo ni el equipo. Nosotros lo manejamos todo.</p>
+        <a href="https://calendly.com/jjenkinslive/bookmeeting" target="_blank" class="btn en">Book a Free Strategy Call</a>
+        <a href="https://calendly.com/jjenkinslive/bookmeeting" target="_blank" class="btn es">Reserva una Llamada Gratuita</a>
+      </div>
+    </section>
+
+    <div class="sec-dark"><div class="sec"><div class="wrap">
+      <div class="intro-grid">
+        <div>
+          <span class="tag en">What is White Glove?</span>
+          <span class="tag es">¿Qué es Guante Blanco?</span>
+          <h2 class="sec-title en">AI That Works For You <br><span class="cyan">Without the Headaches</span></h2>
+          <h2 class="sec-title es">IA Que Trabaja Para Ti <br><span class="cyan">Sin los Dolores de Cabeza</span></h2>
+          <p class="en">White Glove is our fully-managed premium service. A dedicated AI team handles your entire transformation, from discovery to deployment. No tech knowledge needed.</p>
+          <p class="es">Guante Blanco es nuestro servicio premium completamente gestionado. Un equipo dedicado maneja todo, desde el descubrimiento hasta el despliegue.</p>
+          <ul class="cklist en">
+            <li>Dedicated Account Manager assigned to your business</li>
+            <li>Custom AI strategy built around your specific goals</li>
+            <li>Full end-to-end implementation, we handle everything</li>
+            <li>Ongoing monitoring, reporting and optimization</li>
+            <li>Priority support with guaranteed response times</li>
+            <li>Seamless integration with tools you already use</li>
+          </ul>
+          <ul class="cklist es">
+            <li>Gerente de cuenta dedicado a tu negocio</li>
+            <li>Estrategia de IA personalizada a tus objetivos</li>
+            <li>Implementación integral, nosotros lo hacemos todo</li>
+            <li>Monitoreo continuo, reportes y optimización</li>
+            <li>Soporte prioritario con tiempos de respuesta garantizados</li>
+            <li>Integración perfecta con las herramientas que ya usas</li>
+          </ul>
+        </div>
+        <div class="intro-img">
+          <img src="https://viralconnections.net/wp-content/uploads/2025/09/AI-Implementation-1024x569.jpg" alt="White Glove AI" loading="lazy">
+        </div>
+      </div>
+    </div></div></div>
+
+    <div class="sec"><div class="wrap">
+      <div class="center" style="margin-bottom:44px;">
+        <span class="tag en">Our White Glove Services</span>
+        <span class="tag es">Nuestros Servicios de Guante Blanco</span>
+        <h2 class="sec-title en">AI Solutions <span class="cyan">Tailored to Your Business</span></h2>
+        <h2 class="sec-title es">Soluciones IA <span class="cyan">Adaptadas a Tu Negocio</span></h2>
+        <p class="sec-sub en">Every solution is custom-built for your business, your team, and your goals, no off-the-shelf bots.</p>
+        <p class="sec-sub es">Cada solución se construye específicamente para tu negocio y tus objetivos, sin bots prefabricados.</p>
+      </div>
+      <div class="svc-grid">
+        <div class="svc-card">
+          <img src="https://viralconnections.net/wp-content/uploads/2025/08/marketing-digital-1-1024x512.webp" alt="AI Marketing" loading="lazy">
+          <div class="svc-body">
+            <div class="svc-icon">🤖</div>
+            <h3 class="en">White Glove AI Marketing</h3>
+            <h3 class="es">Marketing IA de Guante Blanco</h3>
+            <p class="en">Fully managed campaigns, content, personalization, automated ad optimization, and lead nurturing.</p>
+            <p class="es">Campañas completamente gestionadas, contenido, personalización y optimización automática de anuncios.</p>
+            <a href="https://calendly.com/jjenkinslive/bookmeeting" target="_blank" class="svc-link">Book a call →</a>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <img src="https://viralconnections.net/wp-content/uploads/2025/08/Marketing-Dashboards-1024x634.png" alt="Analytics" loading="lazy">
+          <div class="svc-body">
+            <div class="svc-icon">📊</div>
+            <h3 class="en">White Glove Analytics &amp; Dashboards</h3>
+            <h3 class="es">Analítica y Dashboards de Guante Blanco</h3>
+            <p class="en">Custom AI dashboards built and maintained for you. Real-time intelligence delivered to your inbox.</p>
+            <p class="es">Dashboards personalizados construidos y mantenidos para ti. Inteligencia en tiempo real en tu bandeja.</p>
+            <a href="https://calendly.com/jjenkinslive/bookmeeting" target="_blank" class="svc-link">Book a call →</a>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <img src="https://viralconnections.net/wp-content/uploads/2025/08/Automatizacion-Inteligente-1024x512.webp" alt="Automation" loading="lazy">
+          <div class="svc-body">
+            <div class="svc-icon">⚡</div>
+            <h3 class="en">White Glove Business Automation</h3>
+            <h3 class="es">Automatización Empresarial de Guante Blanco</h3>
+            <p class="en">We map, design, and deploy intelligent automation, eliminating repetitive tasks and freeing your team.</p>
+            <p class="es">Mapeamos, diseñamos y desplegamos automatización inteligente, eliminando tareas repetitivas.</p>
+            <a href="https://calendly.com/jjenkinslive/bookmeeting" target="_blank" class="svc-link">Book a call →</a>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <img src="https://viralconnections.net/wp-content/uploads/2025/09/AI-Implementation-1024x569.jpg" alt="AI Chatbots" loading="lazy">
+          <div class="svc-body">
+            <div class="svc-icon">💬</div>
+            <h3 class="en">White Glove AI Chatbots &amp; Assistants</h3>
+            <h3 class="es">Chatbots y Asistentes IA de Guante Blanco</h3>
+            <p class="en">24/7 AI assistants trained on your data, deployed across your website, CRM, and support channels.</p>
+            <p class="es">Asistentes IA 24/7 entrenados con tus datos, desplegados en tu sitio, CRM y canales de soporte.</p>
+            <a href="https://calendly.com/jjenkinslive/bookmeeting" target="_blank" class="svc-link">Book a call →</a>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <img src="https://viralconnections.net/wp-content/uploads/2025/08/desarrollo-de-aplicaciones-1024x512.webp" alt="Custom Dev" loading="lazy">
+          <div class="svc-body">
+            <div class="svc-icon">🚀</div>
+            <h3 class="en">White Glove Custom AI Development</h3>
+            <h3 class="es">Desarrollo IA Personalizado de Guante Blanco</h3>
+            <p class="en">Custom AI-powered apps, intelligent CRMs, pricing engines, knowledge bases, and more.</p>
+            <p class="es">Apps de IA personalizadas, CRMs inteligentes, motores de precios, bases de conocimiento y más.</p>
+            <a href="https://calendly.com/jjenkinslive/bookmeeting" target="_blank" class="svc-link">Book a call →</a>
+          </div>
+        </div>
+
+        <div class="svc-card">
+          <img src="https://viralconnections.net/wp-content/uploads/2025/09/VC-1024x576.png" alt="AI Copilots" loading="lazy">
+          <div class="svc-body">
+            <div class="svc-icon">🧠</div>
+            <h3 class="en">White Glove AI Copilots &amp; Custom GPTs</h3>
+            <h3 class="es">Copilotos IA y GPTs Personalizados</h3>
+            <p class="en">AI copilots trained on your knowledge, instant answers from your own documents, SOPs, and data.</p>
+            <p class="es">Copilotos de IA entrenados con tu conocimiento interno, respuestas precisas de tus documentos y SOPs.</p>
+            <a href="https://calendly.com/jjenkinslive/bookmeeting" target="_blank" class="svc-link">Book a call →</a>
+          </div>
+        </div>
+      </div>
+    </div></div>
+
+    <div class="sec-dark"><div class="sec"><div class="wrap">
+      <div class="stats-grid">
+        <div class="stat"><h3>700+</h3><p class="en">Projects Managed</p><p class="es">Proyectos Gestionados</p></div>
+        <div class="stat"><h3>13+</h3><p class="en">Years of Experience</p><p class="es">Años de Experiencia</p></div>
+        <div class="stat"><h3>90%</h3><p class="en">Client Satisfaction</p><p class="es">Satisfacción del Cliente</p></div>
+        <div class="stat"><h3>24/7</h3><p class="en">Dedicated Support</p><p class="es">Soporte Dedicado</p></div>
+      </div>
+    </div></div></div>
+
+    <div class="sec"><div class="wrap">
+      <div class="center" style="margin-bottom:44px;">
+        <span class="tag en">Our Process</span>
+        <span class="tag es">Nuestro Proceso</span>
+        <h2 class="sec-title en">From <span class="cyan">Strategy to Results</span> in 3 Steps</h2>
+        <h2 class="sec-title es">De la <span class="cyan">Estrategia a los Resultados</span> en 3 Pasos</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3 class="en">Free Strategy Call</h3>
+          <h3 class="es">Llamada Estratégica Gratuita</h3>
+          <p class="en">A free discovery call to understand your business and where AI can drive the most impact.</p>
+          <p class="es">Una llamada gratuita para entender tu negocio y dónde la IA puede generar mayor impacto.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3 class="en">Custom AI Roadmap</h3>
+          <h3 class="es">Hoja de Ruta Personalizada</h3>
+          <p class="en">Your dedicated team builds a tailored plan with clear timelines, deliverables, and measurable outcomes.</p>
+          <p class="es">Tu equipo dedicado construye un plan con plazos claros, entregables y resultados medibles.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3 class="en">We Execute &amp; Optimize</h3>
+          <h3 class="es">Ejecutamos y Optimizamos</h3>
+          <p class="en">We handle implementation, launch, and ongoing optimization. Results without lifting a finger.</p>
+          <p class="es">Manejamos la implementación y optimización continua. Resultados sin mover un dedo.</p>
+        </div>
+      </div>
+    </div></div>
+
+    <div class="sec-dark"><div class="sec"><div class="wrap">
+      <div class="center" style="margin-bottom:44px;">
+        <span class="tag en">Why Choose White Glove</span>
+        <span class="tag es">Por Qué Elegir Guante Blanco</span>
+        <h2 class="sec-title en">The <span class="cyan">Premium Difference</span></h2>
+        <h2 class="sec-title es">La <span class="cyan">Diferencia Premium</span></h2>
+      </div>
+      <div class="feat-grid">
+        <div class="feat"><div class="feat-icon">👤</div><div>
+          <h4 class="en">Dedicated Account Manager</h4><h4 class="es">Gerente de Cuenta Dedicado</h4>
+          <p class="en">One expert, one point of contact, owns your strategy, updates, and results end to end.</p>
+          <p class="es">Un experto, un punto de contacto, responsable de tu estrategia y resultados.</p>
+        </div></div>
+        <div class="feat"><div class="feat-icon">🎯</div><div>
+          <h4 class="en">100% Done-For-You</h4><h4 class="es">100% Hecho Para Ti</h4>
+          <p class="en">No learning curve. We handle everything so you never have to become an AI expert.</p>
+          <p class="es">Sin curva de aprendizaje. Manejamos todo para que nunca necesites ser experto en IA.</p>
+        </div></div>
+        <div class="feat"><div class="feat-icon">📈</div><div>
+          <h4 class="en">Measurable ROI, Not Promises</h4><h4 class="es">ROI Medible, No Promesas</h4>
+          <p class="en">Clear KPIs and transparent reporting on every engagement. You always know what is working.</p>
+          <p class="es">KPIs claros e informes transparentes. Siempre sabrás qué está funcionando.</p>
+        </div></div>
+        <div class="feat"><div class="feat-icon">🔗</div><div>
+          <h4 class="en">Seamless Tool Integration</h4><h4 class="es">Integración Sin Problemas</h4>
+          <p class="en">We connect AI with what you already use, CRM, ERP, e-commerce, marketing platforms.</p>
+          <p class="es">Conectamos IA con lo que ya usas, sin reemplazar ni reestructurar nada.</p>
+        </div></div>
+        <div class="feat"><div class="feat-icon">🛡️</div><div>
+          <h4 class="en">Enterprise-Grade Security</h4><h4 class="es">Seguridad Empresarial</h4>
+          <p class="en">Your data protected with enterprise standards at every stage of implementation.</p>
+          <p class="es">Tus datos protegidos con estándares empresariales en cada etapa.</p>
+        </div></div>
+        <div class="feat"><div class="feat-icon">🔄</div><div>
+          <h4 class="en">Ongoing Optimization</h4><h4 class="es">Optimización Continua</h4>
+          <p class="en">We continuously monitor, retrain, and optimize your AI systems as your business evolves.</p>
+          <p class="es">Monitoreamos y optimizamos continuamente tus sistemas de IA a medida que creces.</p>
+        </div></div>
+      </div>
+    </div></div></div>
+
+    <div class="cta-sec">
+      <div class="cta-inner">
+        <span class="tag en" style="text-align:center;display:block;">Ready to Get Started?</span>
+        <span class="tag es" style="text-align:center;">¿Listo Para Comenzar?</span>
+        <h2 class="sec-title en">Book Your <span class="cyan">Free Strategy Call</span></h2>
+        <h2 class="sec-title es">Reserva Tu <span class="cyan">Llamada Estratégica Gratuita</span></h2>
+        <p class="en">In 30 minutes we'll pinpoint where AI can save you time, cut costs, and drive growth, no cost, no obligation.</p>
+        <p class="es">En 30 minutos identificaremos dónde la IA puede ahorrarte tiempo y reducir costos, sin costo, sin compromiso.</p>
+        <div class="cal-wrap">
+          <div class="calendly-inline-widget" data-url="https://calendly.com/jjenkinslive/bookmeeting?hide_gdpr_banner=1&amp;background_color=070707&amp;text_color=ffffff&amp;primary_color=19F3E1" style="min-width:320px;height:700px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script>
+    window.vcLang = function (lang, btn) {
+      var pg = document.getElementById('vc-wg');
+      if (lang === 'es') {
+        pg.classList.add('show-es');
+      } else {
+        pg.classList.remove('show-es');
+      }
+      document.querySelectorAll('#vc-wg .lbtn').forEach(function (b) { b.classList.remove('on'); });
+      btn.classList.add('on');
+    };
+  </script>
+</body>
+</html>
